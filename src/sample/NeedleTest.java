@@ -7,15 +7,16 @@ public class NeedleTest {
 
     @org.junit.Test
     public void testConstructor() throws Exception {
-        Needle test = new Needle(5.0,11.0,265.0);
+        Needle test = new Needle(5.0,11.0,265.0,10.0);
         Assert.assertEquals(5, test.x);
         Assert.assertEquals(11, test.y);
         Assert.assertEquals(265, test.angle);
+        Assert.assertEquals(10, test.length);
     }
 
     @org.junit.Test
     public void testGetNeedleNode() throws Exception {
-        Needle test = new Needle(5.0,11.0,265.0);
+        Needle test = new Needle(5.0,11.0,265.0, 10.0);
 
         // Creating the expected needle Line object:
         double lineLength = 10.0;
