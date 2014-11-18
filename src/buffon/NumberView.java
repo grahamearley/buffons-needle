@@ -52,10 +52,12 @@ public class NumberView extends Group {
     public void writeInformation(double boardWidth, double boardHeight) {
         this.getChildren().clear();
 
-        double distanceFromTop = 0;
+        double distanceFromTop = 0; // keeps track of where text already is
+
         int h1Size = 20;
         int h2Size = 15;
         int padding = 3;
+
         Integer needles = theModel.getNeedles().size();
         Integer intersections = theModel.getIntersectionsCountWithinWindow(boardWidth, boardHeight);
         Double pi = this.estimatePiWithinWindow(boardWidth, boardHeight);
@@ -93,7 +95,6 @@ public class NumberView extends Group {
 
         Text piApproximation = new Text(piApproxHeader.getLayoutBounds().getWidth() + padding, distanceFromTop, pi.toString());
         piApproximation.setFont(Font.font(this.font, FontWeight.LIGHT, h2Size));
-        distanceFromTop += h2Size + padding;
         this.getChildren().add(piApproximation);
     }
 
