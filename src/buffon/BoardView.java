@@ -81,7 +81,7 @@ public class BoardView extends Group {
         }
     }
 
-    // TODO: Make this thing stop shifting around on screen! LayoutBounds?
+    // TODO: Make this thing stop shifting around on screen! LayoutBounds? Pad it by 1 NEEDLE_LENGTH unit?
     public void drawBorder() {
         Rectangle border = new Rectangle(0.0, 0.0, this.getWidth(), this.getHeight());
         border.setFill(this.getBackgroundColor());
