@@ -24,7 +24,7 @@ public class BoardView extends Group {
     final double DEFAULT_WIDTH = 175.0;
     final double DEFAULT_HEIGHT = 200.0;
     final Color DEFAULT_BORDER_COLOR = Color.BLACK;
-    final Color DEFAULT_BACKGROUND_COLOR = Color.SANDYBROWN;
+    final Color DEFAULT_BACKGROUND_COLOR = Color.web("#C8F7C5");
 
     public BoardView() {
         this.width = DEFAULT_WIDTH;

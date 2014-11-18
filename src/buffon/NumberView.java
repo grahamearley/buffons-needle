@@ -63,7 +63,7 @@ public class NumberView extends Group {
         Double pi = this.estimatePiWithinWindow();
 
         // Top header:
-        Text mainHeader = new Text(0, distanceFromTop, "Buffon's Needle Approximation");
+        Text mainHeader = new Text(0, distanceFromTop, "Buffon's Needle Simulation");
         mainHeader.setFont(Font.font(this.font, FontWeight.EXTRA_BOLD, h1Size));
         distanceFromTop += h1Size + padding;
         this.getChildren().add(mainHeader);

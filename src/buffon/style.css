@@ -1,0 +1,20 @@
+#Button {
+    -fx-background-color: #68C3A3;
+    -fx-font-size: 13px;
+    -fx-font-family: "Avenir";
+
+}
+#Button:hover {
+    -fx-background-color: #66CC99;
+}
+#Button:pressed {
+    -fx-background-color: #03C9A9;
+}
+
+#GridPane {
+    -fx-background-color: #ECF0F1
+}
+
+#Input {
+    -fx-font-family: "Avenir";
+}
