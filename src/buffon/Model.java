@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Model {
     public ArrayList<Needle> tossedNeedles;
     public double slatDistance;
+    // TODO: Add Board dimensions?
 
     public Model() {
         this.tossedNeedles = new ArrayList<Needle>();

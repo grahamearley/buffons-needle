@@ -5,6 +5,8 @@ import org.junit.Test;
 
 public class ModelTest {
 
+    // TODO: Write a killer test suite for everything!
+
     @Test
     public void testGetIntersectionsCount() throws Exception {
         Model model = new Model();

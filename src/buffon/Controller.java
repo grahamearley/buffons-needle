@@ -72,10 +72,10 @@ public class Controller {
             boardView.drawNeedle(randomNeedle);
             }
 
-        // TODO: FIX THIS VIEW! Don't hardcode those dimensions in there! ::
+        // TODO: FIX THIS VIEW! Don't hardcode those dimensions in there! (put them in model?)
         this.numberView.setModel(theModel);
-        this.numberView.writeHeaders();
-        this.numberView.displayInformation(500, 300);
+        this.numberView.writeInformation(500, 300);
+//        this.numberView.displayInformation(500, 300);
         System.out.println(boardView.estimatePi());
 
     }
