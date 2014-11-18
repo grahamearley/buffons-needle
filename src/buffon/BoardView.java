@@ -68,18 +68,20 @@ public class BoardView extends Group {
 
     public void setModel(Model model) {
         this.theModel = model;
+        this.theModel.setBoardWidth(this.width);
+        this.theModel.setBoardHeight(this.height);
     }
 
 
     public void drawSlats() {
-        double[] slatXValues = theModel.getSlatXValuesWithinWindow(this.width);
+        double[] slatXValues = theModel.getSlatXValuesWithinWindow();
         for (double slatXValue : slatXValues) {
             Line slat = new Line(slatXValue, 0, slatXValue, this.height);
             this.getChildren().add(slat);
         }
     }
 
-    // TODO: Make this thing stop shifting around on screen!
+    // TODO: Make this thing stop shifting around on screen! LayoutBounds?
     public void drawBorder() {
         Rectangle border = new Rectangle(0.0, 0.0, this.getWidth(), this.getHeight());
         border.setFill(this.getBackgroundColor());

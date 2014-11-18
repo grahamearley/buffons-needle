@@ -19,7 +19,7 @@ public class ModelTest {
         model.addNeedle(nonIntersectNeedle);
 
         // THIS HAS CHANGED A BIT
-        int intersectionCount = model.getIntersectionsCountWithinWindow(0,0);
+        int intersectionCount = model.getIntersectionsCountWithinWindow();
 
         Assert.assertEquals(1, intersectionCount);
     }

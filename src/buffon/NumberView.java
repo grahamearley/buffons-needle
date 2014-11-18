@@ -49,7 +49,7 @@ public class NumberView extends Group {
         this.theModel = model;
     }
 
-    public void writeInformation(double boardWidth, double boardHeight) {
+    public void writeInformation() {
         this.getChildren().clear();
 
         double distanceFromTop = 0; // keeps track of where text already is
@@ -59,8 +59,8 @@ public class NumberView extends Group {
         int padding = 3;
 
         Integer needles = theModel.getNeedles().size();
-        Integer intersections = theModel.getIntersectionsCountWithinWindow(boardWidth, boardHeight);
-        Double pi = this.estimatePiWithinWindow(boardWidth, boardHeight);
+        Integer intersections = theModel.getIntersectionsCountWithinWindow();
+        Double pi = this.estimatePiWithinWindow();
 
         // Top header:
         Text mainHeader = new Text(0, distanceFromTop, "Buffon's Needle Approximation");
@@ -98,8 +98,8 @@ public class NumberView extends Group {
         this.getChildren().add(piApproximation);
     }
 
-    private double estimatePiWithinWindow(double width, double height) {
-        int intersections = theModel.getIntersectionsCountWithinWindow(width, height);
+    private double estimatePiWithinWindow() {
+        int intersections = theModel.getIntersectionsCountWithinWindow();
         // Can't divided by zero:
         if (intersections == 0) {
             return 0;

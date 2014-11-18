@@ -32,7 +32,7 @@ public class Controller {
         boardView.drawSlats();
 
         this.numberView.setModel(this.theModel);
-        this.numberView.writeInformation(500, 300); // TODO remove hardcoded values
+        this.numberView.writeInformation(); // TODO remove hardcoded values
     }
 
     public void tossNeedles(int num) {
@@ -81,6 +81,6 @@ public class Controller {
             }
 
         // TODO: FIX THIS VIEW! Don't hardcode those dimensions in there! (put them in model?)
-        this.numberView.writeInformation(500, 300);
+        this.numberView.writeInformation();
     }
 }

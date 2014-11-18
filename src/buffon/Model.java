@@ -14,7 +14,9 @@ import java.util.ArrayList;
 public class Model {
     public ArrayList<Needle> tossedNeedles;
     public double slatDistance;
-    // TODO: Add Board dimensions?
+//    TODO: Add Board dimensions?
+    public double boardWidth;
+    public double boardHeight;
 
     public Model() {
         this.tossedNeedles = new ArrayList<Needle>();
@@ -26,8 +28,8 @@ public class Model {
      *
      * @return an array containing the x values for each slat Line.
      */
-    public double[] getSlatXValuesWithinWindow(double width) {
-        int numberOfSlats = (int)width / (int)this.slatDistance;
+    public double[] getSlatXValuesWithinWindow() {
+        int numberOfSlats = (int)this.boardWidth / (int)this.slatDistance;
 
         double[] slatXValues = new double[numberOfSlats];
         for (int i = 0; i < numberOfSlats; i++) {
@@ -42,13 +44,13 @@ public class Model {
      *
      * @return the number of intersections between needles and slats.
      */
-    public int getIntersectionsCountWithinWindow(double width, double height) {
+    public int getIntersectionsCountWithinWindow() {
         int intersections = 0;
 
-        double[] slatXValues = this.getSlatXValuesWithinWindow(width);
+        double[] slatXValues = this.getSlatXValuesWithinWindow();
 
         for (Needle needle : tossedNeedles) {
-            Line needleLine = needle.getNeedleNode(width, height);
+            Line needleLine = needle.getNeedleNode(this.boardWidth, this.boardHeight);
             for (double slat : slatXValues) {
                 if ((needleLine.getStartX() <= slat && needleLine.getEndX() >= slat)
                         || needleLine.getEndX() <= slat && needleLine.getStartX() >= slat) {
@@ -69,5 +71,21 @@ public class Model {
 
     public void setSlatDistance(double distance) {
         this.slatDistance = distance;
+    }
+
+    public void setBoardWidth(double width) {
+        this.boardWidth = width;
+    }
+
+    public double getBoardWidth() {
+        return this.boardWidth;
+    }
+
+    public void setBoardHeight(double height) {
+        this.boardHeight = height;
+    }
+
+    public double getBoardHeight() {
+        return this.boardHeight;
     }
 }

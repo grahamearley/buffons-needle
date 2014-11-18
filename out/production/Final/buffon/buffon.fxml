@@ -22,6 +22,8 @@
                 backgroundColor="sandybrown" />
 
     <TextField fx:id="needleNumberInput" GridPane.rowIndex="2" text="0" />
+
+    <!--TODO: Style button and input with CSS?!-->
     <Button text="Toss Needles!" onAction="#tossNeedles" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
     <Label fx:id="inputErrorLabel" GridPane.rowIndex="4" />
 
