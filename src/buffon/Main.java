@@ -11,8 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("buffon.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Buffon's Needle Simulator");
+        primaryStage.setScene(new Scene(root, 700, 500));
         primaryStage.show();
     }
 

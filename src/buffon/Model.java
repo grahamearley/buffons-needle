@@ -20,6 +20,23 @@ public class Model {
     }
 
     /**
+     * Determine the actual x values of each slat within a given window
+     * (only the window width is needed to determine the x values).
+     *
+     * @return an array containing the x values for each slat Line.
+     */
+    public double[] getSlatXValuesWithinWindow(double width) {
+        int numberOfSlats = (int)width / (int)this.slatDistance;
+
+        double[] slatXValues = new double[numberOfSlats];
+        for (int i = 0; i < numberOfSlats; i++) {
+            slatXValues[i] = i * this.slatDistance;
+        }
+
+        return slatXValues;
+    }
+
+    /**
      * Look at all the needles and count how many cross a slat in the board.
      *
      * @return the number of intersections between needles and slats.
@@ -27,16 +44,11 @@ public class Model {
     public int getIntersectionsCountWithinWindow(double width, double height) {
         int intersections = 0;
 
-        // TODO: Make slatXvalues be its own method?
-        int numberOfSlats = (int)width / (int)this.slatDistance;
-        double[] slatXvalues = new double[numberOfSlats];
-        for (int i = 0; i < numberOfSlats; i++) {
-            slatXvalues[i] = i * this.slatDistance;
-        }
+        double[] slatXValues = this.getSlatXValuesWithinWindow(width);
 
         for (Needle needle : tossedNeedles) {
             Line needleLine = needle.getNeedleNode(width, height);
-            for (double slat : slatXvalues) {
+            for (double slat : slatXValues) {
                 if ((needleLine.getStartX() <= slat && needleLine.getEndX() >= slat)
                         || needleLine.getEndX() <= slat && needleLine.getStartX() >= slat) {
                     intersections++;

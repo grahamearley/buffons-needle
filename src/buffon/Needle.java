@@ -1,5 +1,6 @@
 package buffon;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 /**
@@ -12,18 +13,24 @@ import javafx.scene.shape.Line;
  */
 
 public class Needle {
+    // These values are percentages so that the View can determine where to put
+    //  the Needle's Line object within the window. It keeps things separate.
     public double xPercent;
     public double yPercent;
     public double anglePercent; // degrees CCW from horizontal (pointing right)
     public double length;
-    // These values are percentages so that the View can determine where to put
-    //  the Needle's Line object within the window. It keeps things separate.
+    public Color color;
 
     public Needle(double xPercent, double yPercent, double anglePercent, double length) {
         this.xPercent = xPercent;
         this.yPercent = yPercent;
         this.anglePercent = anglePercent;
         this.length = length;
+        this.color = Color.BLACK;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     /**
@@ -34,13 +41,14 @@ public class Needle {
      * @return the JavaFX Line node to be displayed in the scene.
      */
     public Line getNeedleNode(double windowWidth, double windowHeight) {
-        double angle = this.anglePercent * Math.PI*2;
-        double startX = windowWidth * this.xPercent;
-        double startY = windowHeight * this.yPercent;
+        double angle = this.anglePercent * (2 * Math.PI);
+        double startX = this.xPercent * windowWidth;
+        double startY = this.yPercent * windowHeight;
         double endX = startX + this.length * Math.cos(angle);
         double endY = startY + this.length * Math.sin(angle);
 
         Line needleLine = new Line(startX, startY, endX, endY);
+        needleLine.setStroke(this.color);
 
         return needleLine;
     }

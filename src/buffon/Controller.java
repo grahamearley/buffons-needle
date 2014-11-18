@@ -1,15 +1,17 @@
 package buffon;
 
 import javafx.event.ActionEvent;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 import java.util.Random;
 
+// todo: javadoc this stuff up
+
 public class Controller {
     private Model theModel;
-    public Group viewGroup;
+    public BoardView boardView;
+    public NumberView numberView; //needs work
     public Random randomGenerator;
     public final double NEEDLE_LENGTH = 10.0;
     public TextField needleNumberInput;
@@ -22,18 +24,10 @@ public class Controller {
         this.theModel = new Model();
         theModel.setSlatDistance(NEEDLE_LENGTH);
 
-        double leftEdge = 0;
-        final double PADDING = 0.0;
-
-        for (Node node : this.viewGroup.getChildren()) {
-            BoardView board = (BoardView)node;
-            board.setModel(this.theModel);
-            board.setLayoutX(leftEdge);
-            leftEdge += board.getWidth() + PADDING;
-            board.drawBorder();
-            board.drawNeedles();
-            board.drawSlats(NEEDLE_LENGTH); // the slats are NEEDLE_LENGTH units apart.
-        }
+        boardView.setModel(this.theModel);
+        boardView.setLayoutX(0);
+        boardView.drawBorder();
+        boardView.drawSlats();
     }
 
     public void tossNeedles(int num) {
@@ -50,22 +44,39 @@ public class Controller {
         double randomAnglePercent = randomGenerator.nextDouble();
         double length = NEEDLE_LENGTH;
 
-        return new Needle(randomXpercent, randomYpercent, randomAnglePercent, length);
+        // Generate a random RGB color:
+        int r = randomGenerator.nextInt(256);
+        int g = randomGenerator.nextInt(256);
+        int b = randomGenerator.nextInt(256);
+
+        Needle randomNeedle = new Needle(randomXpercent, randomYpercent, randomAnglePercent, length);
+        randomNeedle.setColor(Color.rgb(r, g, b));
+
+        return randomNeedle;
     }
 
-    // doesn't do anything yet: #TODO
     public void tossNeedles(ActionEvent actionEvent) {
-        // http://stackoverflow.com/questions/25252558/javafx-how-to-make-enter-key-submit-textarea
+        // Read the input:
+        int n = 0;
+        try {
+            n = Integer.parseInt(needleNumberInput.getText());
+        } catch(Exception e) {
+            n = 0;
+            // TODO: display error message to the user?
+        }
 
-        for (int i = 0; i < 1000; i++) {
+
+        for (int i = 0; i < n; i++) {
             Needle randomNeedle = getRandomNeedle();
             theModel.addNeedle(randomNeedle);
+            boardView.drawNeedle(randomNeedle);
             }
 
-        for (Node node : this.viewGroup.getChildren()) {
-            BoardView board = (BoardView)node;
-            board.drawNeedles();
-            System.out.println("Pi ~~ " + board.estimatePi());
-        }
+        // TODO: FIX THIS VIEW! Don't hardcode those dimensions in there! ::
+        this.numberView.setModel(theModel);
+        this.numberView.writeHeaders();
+        this.numberView.displayInformation(500, 300);
+        System.out.println(boardView.estimatePi());
+
     }
 }

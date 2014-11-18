@@ -33,7 +33,7 @@ public class BoardView extends Group {
         this.backgroundColor = DEFAULT_BACKGROUND_COLOR;
     }
 
-    // Getters and Setters necessary for the @FXML tag:
+    // Getters and setters used by the @FXML tag:
     public void setWidth(double width) {
         this.width = width;
     }
@@ -71,10 +71,10 @@ public class BoardView extends Group {
     }
 
 
-    public void drawSlats(double distance) {
-        int numberOfSlats = (int)this.width / (int)distance;
-        for (int i = 0; i < numberOfSlats; i++) {
-            Line slat = new Line(i*distance, 0, i*distance, this.height);
+    public void drawSlats() {
+        double[] slatXValues = theModel.getSlatXValuesWithinWindow(this.width);
+        for (double slatXValue : slatXValues) {
+            Line slat = new Line(slatXValue, 0, slatXValue, this.height);
             this.getChildren().add(slat);
         }
     }
@@ -82,23 +82,22 @@ public class BoardView extends Group {
     public void drawBorder() {
         Rectangle border = new Rectangle(0.0, 0.0, this.getWidth(), this.getHeight());
         border.setFill(this.getBackgroundColor());
+        border.setLayoutX(0);
+        border.setLayoutY(0);
         border.setStroke(this.getBorderColor());
         border.setStrokeWidth(2.0);
         this.getChildren().add(border);
     }
 
-    public void drawNeedles() {
-        ArrayList<Needle> needles = theModel.getNeedles();
-        for (Needle needle : needles) {
-            Line needleLine = needle.getNeedleNode(this.width, this.height);
-            this.getChildren().add(needleLine);
-        }
+    public void drawNeedle(Needle needle) {
+        Line needleLine = needle.getNeedleNode(this.width, this.height);
+        this.getChildren().add(needleLine);
     }
 
     public double estimatePi() {
         int intersections = theModel.getIntersectionsCountWithinWindow(this.width, this.height);
 
-        // Can't divided by zero:
+        // Prevent against divisions by zero:
         if (intersections == 0) {
             return 0;
         }
