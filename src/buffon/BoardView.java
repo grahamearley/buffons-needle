@@ -94,18 +94,18 @@ public class BoardView extends Group {
         this.getChildren().add(needleLine);
     }
 
-    public double estimatePi() {
-        int intersections = theModel.getIntersectionsCountWithinWindow(this.width, this.height);
-
-        // Prevent against divisions by zero:
-        if (intersections == 0) {
-            return 0;
-        }
-
-        int totalNeedles = theModel.getNeedles().size();
-        double pi = (2.0 * totalNeedles) / intersections;
-
-        return pi;
-    }
+//    public double estimatePi() {
+//        int intersections = theModel.getIntersectionsCountWithinWindow(this.width, this.height);
+//
+//        // Prevent against divisions by zero:
+//        if (intersections == 0) {
+//            return 0;
+//        }
+//
+//        int totalNeedles = theModel.getNeedles().size();
+//        double pi = (2.0 * totalNeedles) / intersections;
+//
+//        return pi;
+//    }
 
 }

@@ -1,6 +1,7 @@
 package buffon;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
@@ -15,6 +16,7 @@ public class Controller {
     public Random randomGenerator;
     public final double NEEDLE_LENGTH = 10.0;
     public TextField needleNumberInput;
+    public Label inputErrorLabel;
 
 
     public Controller() {
@@ -28,6 +30,9 @@ public class Controller {
         boardView.setLayoutX(0);
         boardView.drawBorder();
         boardView.drawSlats();
+
+        this.numberView.setModel(this.theModel);
+        this.numberView.writeInformation(500, 300); // TODO remove hardcoded values
     }
 
     public void tossNeedles(int num) {
@@ -60,9 +65,12 @@ public class Controller {
         int n = 0;
         try {
             n = Integer.parseInt(needleNumberInput.getText());
+            this.inputErrorLabel.setText(String.format("Added %d needles.", n));
         } catch(Exception e) {
             n = 0;
-            // TODO: display error message to the user?
+
+            // Notify users of the error:
+            this.inputErrorLabel.setText("Please enter a valid integer!");
         }
 
 
@@ -73,10 +81,6 @@ public class Controller {
             }
 
         // TODO: FIX THIS VIEW! Don't hardcode those dimensions in there! (put them in model?)
-        this.numberView.setModel(theModel);
         this.numberView.writeInformation(500, 300);
-//        this.numberView.displayInformation(500, 300);
-        System.out.println(boardView.estimatePi());
-
     }
 }

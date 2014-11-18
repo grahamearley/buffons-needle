@@ -97,24 +97,6 @@ public class NumberView extends Group {
         this.getChildren().add(piApproximation);
     }
 
-//    public void displayInformation(double boardWidth, double boardHeight) {
-//        double pi = this.estimatePiWithinWindow(boardWidth, boardHeight);
-//        int intersections = theModel.getIntersectionsCountWithinWindow(boardWidth, boardHeight);
-//        int needleCount = theModel.getNeedles().size();
-//
-//        String printString = String.format("Pi approximation: %s\n" +
-//                                            "Intersections: %s\n" +
-//                                            "Total Needles: %s",
-//                                             pi, intersections, needleCount);
-//
-//        Text piReader = new Text();
-//        piReader.setWrappingWidth(200);
-//        piReader.setText(printString);
-//
-////        this.getChildren().clear();
-////        this.getChildren().add(piReader);
-//    }
-
     private double estimatePiWithinWindow(double width, double height) {
         int intersections = theModel.getIntersectionsCountWithinWindow(width, height);
         // Can't divided by zero:
