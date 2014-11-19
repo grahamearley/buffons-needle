@@ -24,7 +24,7 @@ public class BoardView extends Group {
     final double DEFAULT_WIDTH = 175.0;
     final double DEFAULT_HEIGHT = 200.0;
     final Color DEFAULT_BORDER_COLOR = Color.BLACK;
-    final Color DEFAULT_BACKGROUND_COLOR = Color.web("#C8F7C5");
+    final Color DEFAULT_BACKGROUND_COLOR = Color.web("#E4F1FE");
 
     public BoardView() {
         this.width = DEFAULT_WIDTH;
@@ -88,7 +88,7 @@ public class BoardView extends Group {
         border.setLayoutX(0);
         border.setLayoutY(0);
         border.setStroke(this.getBorderColor());
-        border.setStrokeWidth(2.0);
+        border.setStrokeWidth(1.0);
         this.getChildren().add(border);
     }
 
@@ -96,19 +96,5 @@ public class BoardView extends Group {
         Line needleLine = needle.getNeedleNode(this.width, this.height);
         this.getChildren().add(needleLine);
     }
-
-//    public double estimatePi() {
-//        int intersections = theModel.getIntersectionsCountWithinWindow(this.width, this.height);
-//
-//        // Prevent against divisions by zero:
-//        if (intersections == 0) {
-//            return 0;
-//        }
-//
-//        int totalNeedles = theModel.getNeedles().size();
-//        double pi = (2.0 * totalNeedles) / intersections;
-//
-//        return pi;
-//    }
 
 }
