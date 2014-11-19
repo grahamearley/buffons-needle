@@ -15,7 +15,7 @@ public class Controller {
     public BoardView boardView;
     public NumberView numberView;
     public Random randomGenerator;
-    public final double NEEDLE_LENGTH = 10.0;
+    public final double NEEDLE_LENGTH = 15.0;
     public TextField needleNumberInput;
     public Label inputErrorLabel;
 
@@ -33,7 +33,7 @@ public class Controller {
         boardView.drawSlats();
 
         this.numberView.setModel(this.theModel);
-        this.numberView.writeInformation(); // TODO remove hardcoded values
+        this.numberView.writeInformation();
     }
 
     public void tossNeedles(int num) {
@@ -82,7 +82,6 @@ public class Controller {
             boardView.drawNeedle(randomNeedle);
             }
 
-        // TODO: FIX THIS VIEW! Don't hardcode those dimensions in there! (put them in model?)
         this.numberView.writeInformation();
     }
 }
