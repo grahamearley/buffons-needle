@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Model {
     public ArrayList<Needle> tossedNeedles;
     public double slatDistance;
-//    TODO: Add Board dimensions?
     public double boardWidth;
     public double boardHeight;
 
@@ -29,6 +28,7 @@ public class Model {
      */
     public double[] getSlatXValues() {
         int numberOfSlats = (int)this.boardWidth / (int)this.slatDistance + 1;
+        // add one to the slat count so there is a slat on the end.
 
         double[] slatXValues = new double[numberOfSlats];
         for (int i = 0; i < numberOfSlats; i++) {

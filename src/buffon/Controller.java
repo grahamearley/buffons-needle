@@ -27,11 +27,13 @@ public class Controller {
         this.theModel = new Model();
         theModel.setSlatDistance(NEEDLE_LENGTH);
 
+        // Set up the board view:
         boardView.setModel(this.theModel);
         boardView.setLayoutX(0);
         boardView.drawBorder();
         boardView.drawSlats();
 
+        // Set up the number view:
         this.numberView.setModel(this.theModel);
         this.numberView.writeInformation();
     }
