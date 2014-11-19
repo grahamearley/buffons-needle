@@ -1,7 +1,6 @@
 package buffon;
 
 import javafx.scene.shape.Line;
-
 import java.util.ArrayList;
 
 /**

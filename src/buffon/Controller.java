@@ -13,7 +13,7 @@ import java.util.Random;
 public class Controller {
     private Model theModel;
     public BoardView boardView;
-    public NumberView numberView; //needs work
+    public NumberView numberView;
     public Random randomGenerator;
     public final double NEEDLE_LENGTH = 10.0;
     public TextField needleNumberInput;

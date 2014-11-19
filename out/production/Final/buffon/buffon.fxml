@@ -7,7 +7,6 @@
 
 <?import javafx.scene.control.Label?>
 
-<?import java.net.URL?>
 <?import javafx.scene.text.Font?>
 <GridPane fx:controller="buffon.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
@@ -15,9 +14,7 @@
           id="GridPane">
 
     <NumberView GridPane.rowIndex="0"
-                fx:id="numberView"
-                width="200"
-                height="200" />
+                fx:id="numberView" />
 
     <BoardView GridPane.rowIndex="1"
                 fx:id="boardView"
@@ -34,6 +31,7 @@
             GridPane.rowIndex="3"
             GridPane.columnIndex="0"
             id="Button"/>
+    <!--TODO: Add a "CLEAR NEEDLES" button!-->
 
     <Label fx:id="inputErrorLabel" GridPane.rowIndex="4" id="Input">
         <font>

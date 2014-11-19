@@ -9,40 +9,18 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * Created by grahamearley on 11/12/14.
+ * Graham Earley, Carleton College, CS257
  *
+ * This class handles the view of information calculated
+ * from the simulation. It tells the user how many needles have been
+ * thrown, how many intersect, and what the approximation of pi is.
  */
 public class NumberView extends Group {
     private Model theModel;
-
-    @FXML private double width;
-    @FXML private double height;
     private String font;
 
-    final double DEFAULT_WIDTH = 200.0;
-    final double DEFAULT_HEIGHT = 200.0;
-    final String DEFAULT_FONT_STRING = "Avenir";
-
     public NumberView() {
-        this.width = DEFAULT_WIDTH;
-        this.height = DEFAULT_HEIGHT;
-        this.font = DEFAULT_FONT_STRING;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    public double getWidth() {
-        return this.width;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-    public double getHeight() {
-        return this.height;
+        this.font = "Avenir";
     }
 
     public void setModel(Model model) {

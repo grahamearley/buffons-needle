@@ -11,7 +11,11 @@ import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 
 /**
- * Created by grahamearley on 11/12/14.
+ * Graham Earley, Carleton College, CS257
+ *
+ * This class handles the view of the "board" onto which the
+ * needles are thrown. It draws the background, the slats, and
+ * the needles.
  */
 public class BoardView extends Group {
     private Model theModel;
