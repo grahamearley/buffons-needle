@@ -43,7 +43,7 @@ public class Model {
      *
      * @return the number of intersections between needles and slats.
      */
-    public int getIntersectionsCountWithinWindow() {
+    public int getIntersectionsCount() {
         int intersections = 0;
 
         double[] slatXValues = this.getSlatXValuesWithinWindow();
@@ -58,6 +58,20 @@ public class Model {
             }
         }
         return intersections;
+    }
+
+    public double approximatePi() {
+        int intersections = this.getIntersectionsCount();
+
+        // Can't divided by zero:
+        if (intersections == 0) {
+            return 0;
+        }
+
+        int totalNeedles = this.getNeedles().size();
+        double pi = (2.0 * totalNeedles) / intersections;
+
+        return pi;
     }
 
     public void addNeedle(Needle needle) {

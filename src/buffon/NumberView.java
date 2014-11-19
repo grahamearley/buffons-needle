@@ -1,9 +1,6 @@
 package buffon;
 
-import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -37,8 +34,8 @@ public class NumberView extends Group {
         int padding = 3;
 
         Integer needles = theModel.getNeedles().size();
-        Integer intersections = theModel.getIntersectionsCountWithinWindow();
-        Double pi = this.estimatePiWithinWindow();
+        Integer intersections = theModel.getIntersectionsCount();
+        Double pi = theModel.approximatePi();
 
         // Top header:
         Text mainHeader = new Text(0, distanceFromTop, "Buffon's Needle Simulation");
@@ -76,16 +73,4 @@ public class NumberView extends Group {
         this.getChildren().add(piApproximation);
     }
 
-    private double estimatePiWithinWindow() {
-        int intersections = theModel.getIntersectionsCountWithinWindow();
-        // Can't divided by zero:
-        if (intersections == 0) {
-            return 0;
-        }
-
-        int totalNeedles = theModel.getNeedles().size();
-        double pi = (2.0 * totalNeedles) / intersections;
-
-        return pi;
-    }
 }
