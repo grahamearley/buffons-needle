@@ -28,8 +28,7 @@ public class Controller {
 
         // Set up the board view:
         boardView.setModel(this.theModel);
-        boardView.setLayoutX(0);
-        boardView.drawBorder();
+        boardView.drawBoard();
         boardView.drawSlats();
 
         // Set up the number view:
@@ -89,8 +88,7 @@ public class Controller {
 
     public void clearNeedles(ActionEvent actionEvent) {
         this.boardView.getChildren().clear();
-        this.boardView.drawBorder();
-        this.boardView.drawSlats();
+        this.initialize();
         this.inputFeedbackLabel.setText("Cleared the board!");
     }
 }

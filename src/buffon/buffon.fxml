@@ -31,7 +31,8 @@
             GridPane.rowIndex="3"
             GridPane.columnIndex="0"
             id="AddButton"/>
-    <Button text="Remove needles"
+
+    <Button text="Remove all needles"
             onAction="#clearNeedles"
             GridPane.rowIndex="4"
             GridPane.columnIndex="0"

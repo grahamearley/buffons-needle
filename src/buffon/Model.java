@@ -101,4 +101,8 @@ public class Model {
     public double getBoardHeight() {
         return this.boardHeight;
     }
+
+    public double getSlatDistance() {
+        return this.slatDistance;
+    }
 }

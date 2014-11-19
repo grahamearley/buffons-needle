@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("buffon.fxml"));
         primaryStage.setTitle("Buffon's Needle Simulator");
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root, 550, 650));
         primaryStage.show();
     }
 

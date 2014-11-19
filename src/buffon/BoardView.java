@@ -82,14 +82,25 @@ public class BoardView extends Group {
     }
 
     // TODO: Make this thing stop shifting around on screen! LayoutBounds? Pad it by 1 NEEDLE_LENGTH unit?
-    public void drawBorder() {
-        Rectangle border = new Rectangle(0.0, 0.0, this.getWidth(), this.getHeight());
-        border.setFill(this.getBackgroundColor());
-        border.setLayoutX(0);
-        border.setLayoutY(0);
-        border.setStroke(this.getBorderColor());
-        border.setStrokeWidth(1.0);
-        this.getChildren().add(border);
+    public void drawBoard() {
+        // Create the board onto which the needles are thrown.
+        Rectangle board = new Rectangle(0.0, 0.0, this.getWidth(), this.getHeight());
+        board.setFill(this.getBackgroundColor());
+        board.setLayoutX(0);
+        board.setLayoutY(0);
+        board.setStroke(this.getBorderColor());
+        board.setStrokeWidth(1.0);
+
+        // Create an outer rectangle for padding. This rectangle will extend
+        //  beyond the board in all directions by the needle/slat length (because
+        //  some needles fall mostly out of the board).
+        double paddingAmount = this.theModel.getSlatDistance();
+        Rectangle padding = new Rectangle(-paddingAmount, -paddingAmount, this.getWidth() + 2*paddingAmount, this.getHeight()+ 2*paddingAmount);
+        padding.setFill(Color.TRANSPARENT);
+        padding.setStrokeWidth(0);
+
+        this.getChildren().add(padding);
+        this.getChildren().add(board);
     }
 
     public void drawNeedle(Needle needle) {
