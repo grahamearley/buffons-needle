@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 import java.util.Random;
 
@@ -17,7 +16,7 @@ public class Controller {
     public Random randomGenerator;
     public final double NEEDLE_LENGTH = 20.0;
     public TextField needleNumberInput;
-    public Label inputErrorLabel;
+    public Label inputFeedbackLabel;
 
 
     public Controller() {
@@ -69,22 +68,29 @@ public class Controller {
         int n = 0;
         try {
             n = Integer.parseInt(needleNumberInput.getText());
-            this.inputErrorLabel.setText(String.format("Added %d needles.", n));
+            this.inputFeedbackLabel.setText(String.format("Added %d needles.", n));
         } catch(Exception e) {
             n = 0;
 
             // Notify users of the error and set the box to 0:
-            this.inputErrorLabel.setText("Please enter a valid integer!");
+            this.inputFeedbackLabel.setText("Please enter a valid integer!");
             this.needleNumberInput.setText("0");
         }
 
 
         for (int i = 0; i < n; i++) {
             Needle randomNeedle = getRandomNeedle();
-            theModel.addNeedle(randomNeedle);
-            boardView.drawNeedle(randomNeedle);
+            this.theModel.addNeedle(randomNeedle);
+            this.boardView.drawNeedle(randomNeedle);
             }
 
         this.numberView.writeInformation();
+    }
+
+    public void clearNeedles(ActionEvent actionEvent) {
+        this.boardView.getChildren().clear();
+        this.boardView.drawBorder();
+        this.boardView.drawSlats();
+        this.inputFeedbackLabel.setText("Cleared the board!");
     }
 }

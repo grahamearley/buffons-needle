@@ -30,10 +30,15 @@
             onAction="#tossNeedles"
             GridPane.rowIndex="3"
             GridPane.columnIndex="0"
-            id="Button"/>
+            id="AddButton"/>
+    <Button text="Remove needles"
+            onAction="#clearNeedles"
+            GridPane.rowIndex="4"
+            GridPane.columnIndex="0"
+            id="RemoveButton"/>
     <!--TODO: Add a "CLEAR NEEDLES" button!-->
 
-    <Label fx:id="inputErrorLabel" GridPane.rowIndex="4" id="Input">
+    <Label fx:id="inputFeedbackLabel" GridPane.rowIndex="5" id="Input">
         <font>
             <Font name="Avenir Roman" size="15" />
         </font>

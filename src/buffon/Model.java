@@ -57,8 +57,6 @@ public class Model {
                 }
             }
         }
-        System.out.println("Intersections: " + intersections);
-        System.out.println("Slat count: " + slatXValues.length);
         return intersections;
     }
 
