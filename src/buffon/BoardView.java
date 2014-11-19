@@ -2,13 +2,9 @@ package buffon;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-
-import java.util.ArrayList;
 
 /**
  * Graham Earley, Carleton College, CS257
@@ -78,7 +74,7 @@ public class BoardView extends Group {
 
 
     public void drawSlats() {
-        double[] slatXValues = theModel.getSlatXValuesWithinWindow();
+        double[] slatXValues = theModel.getSlatXValues();
         for (double slatXValue : slatXValues) {
             Line slat = new Line(slatXValue, 0, slatXValue, this.height);
             this.getChildren().add(slat);

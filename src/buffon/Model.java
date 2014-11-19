@@ -27,8 +27,8 @@ public class Model {
      *
      * @return an array containing the x values for each slat Line.
      */
-    public double[] getSlatXValuesWithinWindow() {
-        int numberOfSlats = (int)this.boardWidth / (int)this.slatDistance;
+    public double[] getSlatXValues() {
+        int numberOfSlats = (int)this.boardWidth / (int)this.slatDistance + 1;
 
         double[] slatXValues = new double[numberOfSlats];
         for (int i = 0; i < numberOfSlats; i++) {
@@ -46,9 +46,9 @@ public class Model {
     public int getIntersectionsCount() {
         int intersections = 0;
 
-        double[] slatXValues = this.getSlatXValuesWithinWindow();
+        double[] slatXValues = this.getSlatXValues();
 
-        for (Needle needle : tossedNeedles) {
+        for (Needle needle : this.tossedNeedles) {
             Line needleLine = needle.getNeedleNode(this.boardWidth, this.boardHeight);
             for (double slat : slatXValues) {
                 if ((needleLine.getStartX() <= slat && needleLine.getEndX() >= slat)
@@ -57,6 +57,8 @@ public class Model {
                 }
             }
         }
+        System.out.println("Intersections: " + intersections);
+        System.out.println("Slat count: " + slatXValues.length);
         return intersections;
     }
 

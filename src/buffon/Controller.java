@@ -15,7 +15,7 @@ public class Controller {
     public BoardView boardView;
     public NumberView numberView;
     public Random randomGenerator;
-    public final double NEEDLE_LENGTH = 15.0;
+    public final double NEEDLE_LENGTH = 20.0;
     public TextField needleNumberInput;
     public Label inputErrorLabel;
 
@@ -71,8 +71,9 @@ public class Controller {
         } catch(Exception e) {
             n = 0;
 
-            // Notify users of the error:
+            // Notify users of the error and set the box to 0:
             this.inputErrorLabel.setText("Please enter a valid integer!");
+            this.needleNumberInput.setText("0");
         }
 
 
