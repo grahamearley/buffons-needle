@@ -1,5 +1,5 @@
 # Buffon's Needle Simulator README #
-### Graham Earley, CS257, Carleton College ###
+*Graham Earley, CS257, Carleton College*
 
 ### Status of the program:
 The program currently works as I had originally conceived. All desired features are
