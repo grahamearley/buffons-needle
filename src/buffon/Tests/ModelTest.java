@@ -1,5 +1,7 @@
-package buffon;
+package buffon.Tests;
 
+import buffon.Model;
+import buffon.Needle;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,8 +12,9 @@ public class ModelTest {
     private double boardHeight;
     private int numberOfSlats;
     private double length;
-    private double delta;
     private Model theModel;
+
+    private final double delta = 0.00001; // the acceptable error when comparing doubles.
 
     private Needle intersectNeedle;
     private Needle nonIntersectNeedle;
@@ -24,7 +27,6 @@ public class ModelTest {
         this.boardHeight = 100;
         this.boardWidth = 100;
         this.numberOfSlats = 5;
-        this.delta = 0.00001; // the acceptable error for checking doubles.
 
         // Set up the model:
         this.theModel = new Model();
