@@ -30,6 +30,8 @@ public class Controller {
     /**
      * Initialize the environment by creating the model
      * and putting the views on display.
+     *
+     * This method is automatically called by JavaFX.
      */
     public void initialize() {
         this.theModel = new Model();
@@ -38,7 +40,6 @@ public class Controller {
         // Set up the board view:
         boardView.setModel(this.theModel);
         boardView.drawBoard();
-        boardView.drawSlats();
 
         // Set up the number view:
         this.numberView.setModel(this.theModel);
@@ -85,6 +86,7 @@ public class Controller {
         try {
             numberOfNeedlesToAdd = Integer.parseInt(needleNumberInput.getText());
             this.inputFeedbackLabel.setText(String.format("Added %d needles.", numberOfNeedlesToAdd));
+
         } catch(Exception e) {
             numberOfNeedlesToAdd = 0;
 
