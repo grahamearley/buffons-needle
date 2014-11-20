@@ -21,7 +21,8 @@ public class Controller {
     public TextField needleNumberInput;
     public Label inputFeedbackLabel;
     public Random randomGenerator;
-    public final double NEEDLE_LENGTH = 20.0;
+
+    public final int NUMBER_OF_SLATS = 10;
 
     public Controller() {
     }
@@ -32,7 +33,7 @@ public class Controller {
      */
     public void initialize() {
         this.theModel = new Model();
-        theModel.setSlatDistance(NEEDLE_LENGTH);
+        theModel.setNumberOfSlats(NUMBER_OF_SLATS);
 
         // Set up the board view:
         boardView.setModel(this.theModel);
@@ -55,7 +56,9 @@ public class Controller {
         double randomXpercent = randomGenerator.nextDouble();
         double randomYpercent = randomGenerator.nextDouble();
         double randomAnglePercent = randomGenerator.nextDouble();
-        double length = NEEDLE_LENGTH;
+
+        // Needle lengths are equal to the distance between slats:
+        double length = theModel.calculateSlatDistance();
 
         // Generate a random RGB color:
         int r = randomGenerator.nextInt(256);
@@ -69,28 +72,28 @@ public class Controller {
     }
 
     /**
-     * Toss the input number of needles onto the board, and
+     * "Toss" the input number of needles onto the board, and
      * update thew views accordingly. The needles are randomly generated,
      * and if the user entered an invalid integer value, an error is displayed.
      *
      * @param actionEvent The button-click or enter-key event.
      */
     public void tossNeedles(ActionEvent actionEvent) {
+        int numberOfNeedlesToAdd;
+
         // Read the input:
-        int n = 0;
         try {
-            n = Integer.parseInt(needleNumberInput.getText());
-            this.inputFeedbackLabel.setText(String.format("Added %d needles.", n));
+            numberOfNeedlesToAdd = Integer.parseInt(needleNumberInput.getText());
+            this.inputFeedbackLabel.setText(String.format("Added %d needles.", numberOfNeedlesToAdd));
         } catch(Exception e) {
-            n = 0;
+            numberOfNeedlesToAdd = 0;
 
             // Notify users of the error and set the box to 0:
             this.inputFeedbackLabel.setText("Please enter a valid integer!");
             this.needleNumberInput.setText("0");
         }
 
-
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < numberOfNeedlesToAdd; i++) {
             Needle randomNeedle = getRandomNeedle();
             this.theModel.addNeedle(randomNeedle);
             this.boardView.drawNeedle(randomNeedle);
@@ -100,8 +103,8 @@ public class Controller {
     }
 
     /**
-     * Removes all needles from the board view, and then
-     * clears the model by re-initializing.
+     * Removes all objects from the board view, and then
+     * clears the model and starts over by re-initializing.
      *
      * @param actionEvent The button-click event.
      */

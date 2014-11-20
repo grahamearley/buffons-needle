@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Model {
     public ArrayList<Needle> tossedNeedles;
-    public double slatDistance;
+    public int numberOfSlats;
     public double boardWidth;
     public double boardHeight;
 
@@ -22,17 +22,16 @@ public class Model {
     }
 
     /**
-     * Determine the actual x values of each slat within the board Rectangle.
+     * Determine the x values of each slat within the board view Rectangle.
      *
      * @return an array containing the x values for each slat Line.
      */
     public double[] getSlatXValues() {
-        int numberOfSlats = (int)this.boardWidth / (int)this.slatDistance + 1;
-        // add one to the slat count so that there is a slat on the end.
+        double slatDistance = this.calculateSlatDistance();
 
-        double[] slatXValues = new double[numberOfSlats];
-        for (int i = 0; i < numberOfSlats; i++) {
-            slatXValues[i] = i * this.slatDistance;
+        double[] slatXValues = new double[this.numberOfSlats];
+        for (int i = 0; i < this.numberOfSlats; i++) {
+            slatXValues[i] = i * slatDistance;
         }
 
         return slatXValues;
@@ -52,7 +51,7 @@ public class Model {
             Line needleLine = needle.getNeedleNode(this.boardWidth, this.boardHeight);
             for (double slat : slatXValues) {
                 if ((needleLine.getStartX() <= slat && needleLine.getEndX() >= slat)
-                        || needleLine.getEndX() <= slat && needleLine.getStartX() >= slat) {
+                        || (needleLine.getEndX() <= slat && needleLine.getStartX() >= slat)) {
                     intersections++;
                 }
             }
@@ -80,16 +79,26 @@ public class Model {
         return pi;
     }
 
+    /**
+     * Calculate the distance between slats, which are evenly spaced on
+     * the board.
+     *
+     * This calculation is separated for readability.
+     *
+     * @return the distance between each slat.
+     */
+    public double calculateSlatDistance() {
+        // The denominator is (this.numberOfSlats - 1) so that the final slat
+        // goes on the edge of the board.
+        return this.boardWidth / (this.numberOfSlats - 1);
+    }
+
     public void addNeedle(Needle needle) {
         this.tossedNeedles.add(needle);
     }
 
     public ArrayList<Needle> getNeedles() {
         return this.tossedNeedles;
-    }
-
-    public void setSlatDistance(double distance) {
-        this.slatDistance = distance;
     }
 
     public void setBoardWidth(double width) {
@@ -108,7 +117,7 @@ public class Model {
         return this.boardHeight;
     }
 
-    public double getSlatDistance() {
-        return this.slatDistance;
+    public void setNumberOfSlats(int numberOfSlats) {
+        this.numberOfSlats = numberOfSlats;
     }
 }

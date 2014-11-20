@@ -3,7 +3,6 @@
     -fx-background-color: #68C3A3;
     -fx-font-size: 13px;
     -fx-font-family: "Avenir";
-
 }
 #AddButton:hover {
     -fx-background-color: #66CC99;
@@ -17,7 +16,6 @@
     -fx-background-color: #EF4836;
     -fx-font-size: 13px;
     -fx-font-family: "Avenir";
-
 }
 #RemoveButton:hover {
     -fx-background-color: #F64747;

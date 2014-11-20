@@ -100,7 +100,7 @@ public class BoardView extends Group {
         board.setStrokeWidth(1.0);
 
         // Create an outer rectangle for padding.
-        double paddingAmount = this.theModel.getSlatDistance();
+        double paddingAmount = this.theModel.calculateSlatDistance();
         Rectangle padding = new Rectangle(-paddingAmount, -paddingAmount, this.getWidth() + 2*paddingAmount, this.getHeight()+ 2*paddingAmount);
         padding.setFill(Color.TRANSPARENT);
         padding.setStrokeWidth(0);
@@ -112,7 +112,7 @@ public class BoardView extends Group {
     /**
      * Draw a needle on the board.
      *
-     *  @param needle The needle to be drawn
+     * @param needle the Needle to be drawn
      */
     public void drawNeedle(Needle needle) {
         Line needleLine = needle.getNeedleNode(this.width, this.height);

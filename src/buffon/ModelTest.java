@@ -14,7 +14,7 @@ public class ModelTest {
         Needle intersectNeedle = new Needle(4.0,0.0,0.0,10.0);
         Needle nonIntersectNeedle = new Needle(3.0,1.0,90.0,10.0);
 
-        model.setSlatDistance(5);
+//        model.setSlatDistance(5);
         model.addNeedle(intersectNeedle);
         model.addNeedle(nonIntersectNeedle);
 
