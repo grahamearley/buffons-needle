@@ -57,7 +57,7 @@ public class BoardView extends Group {
      * Draw horizontal slat Lines at the x values from the model.
      */
     private void drawSlats() {
-        double[] slatXValues = theModel.getSlatXValues();
+        double[] slatXValues = this.theModel.getSlatXValues();
         for (double slatXValue : slatXValues) {
             Line slat = new Line(slatXValue, 0, slatXValue, this.height);
             this.getChildren().add(slat);
@@ -79,7 +79,7 @@ public class BoardView extends Group {
         board.setStrokeWidth(1.0);
 
         // Create an outer rectangle for padding:
-        double paddingAmount = this.theModel.calculateSlatDistance();
+        double paddingAmount = this.theModel.calculateDistanceBetweenSlats();
         Rectangle padding = new Rectangle(-paddingAmount, -paddingAmount, this.getWidth() + 2*paddingAmount, this.getHeight()+ 2*paddingAmount);
         padding.setFill(Color.TRANSPARENT);
         padding.setStrokeWidth(0);
@@ -88,10 +88,14 @@ public class BoardView extends Group {
         this.getChildren().add(board);
     }
 
+    /**
+     * An enhanced setter method that sets the model for the view,
+     * and adds the view's dimensions to the model so it always
+     * knows the size of the board.
+     */
     public void setModel(Model model) {
         this.theModel = model;
 
-        // Tell the model what the board's dimensions are (for calculations):
         this.theModel.setBoardWidth(this.width);
         this.theModel.setBoardHeight(this.height);
     }

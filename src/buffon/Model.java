@@ -6,8 +6,9 @@ import java.util.ArrayList;
 /**
  * Graham Earley, Carleton College, CS257
  *
- * This is the Model for this MVC program. It stores the needles on the board
- * and the positions of the board's slats.
+ * This is the Model for this MVC program. It stores the information from
+ * the simulation environment (i.e. the board dimensions, the needles on
+ * the board, and the positions of the board's slats).
  *
  * It also approximates pi and determines how many intersections there are between slats and needles.
  */
@@ -22,24 +23,24 @@ public class Model {
     }
 
     /**
-     * Determine the x values of each slat within the board view Rectangle.
+     * Determine the x values of each slat within the board-view Rectangle.
      *
      * @return an array containing the x values for each slat Line.
      */
     public double[] getSlatXValues() {
-        double slatDistance = this.calculateSlatDistance();
-
+        double distanceBetweenSlats = this.calculateDistanceBetweenSlats();
         double[] slatXValues = new double[this.numberOfSlats];
+
         for (int i = 0; i < this.numberOfSlats; i++) {
-            slatXValues[i] = i * slatDistance;
+            slatXValues[i] = i * distanceBetweenSlats;
         }
 
         return slatXValues;
     }
 
     /**
-     * Look at all the needle Lines' x values and count how many cross a
-     * slat in the board.
+     * Count intersections by looking at all the needle Lines' x values
+     * and checking how many cross a slat in the board.
      *
      * @return the number of intersections between needles and slats.
      */
@@ -48,10 +49,8 @@ public class Model {
         double[] slatXValues = this.getSlatXValues();
 
         for (Needle needle : this.tossedNeedles) {
-            Line needleLine = needle.getNeedleNode(this.boardWidth, this.boardHeight);
             for (double slat : slatXValues) {
-                if ((needleLine.getStartX() <= slat && needleLine.getEndX() >= slat)
-                        || (needleLine.getEndX() <= slat && needleLine.getStartX() >= slat)) {
+                if (this.isIntersection(needle, slat)) {
                     intersections++;
                 }
             }
@@ -87,10 +86,28 @@ public class Model {
      *
      * @return the distance between each slat.
      */
-    public double calculateSlatDistance() {
+    public double calculateDistanceBetweenSlats() {
         // The denominator is (this.numberOfSlats - 1) so that the final slat
         // goes on the edge of the board.
         return this.boardWidth / (this.numberOfSlats - 1);
+    }
+
+    /**
+     * A helper method to see if a needle Line intersects with a slat.
+     *
+     * This calculation is separated for readability.
+     *
+     * @return the distance between each slat.
+     */
+    private boolean isIntersection(Needle needle, double slatXValue) {
+        Line needleLine = needle.getNeedleNode(this.boardWidth, this.boardHeight);
+
+        // Only the beginning position is checked for being on the slat (<= rather than <) so that no
+        //  intersection is counted twice. The final expression in this logic statement covers the
+        //  case where a vertical needle is directly on top of a slat.
+        return (needleLine.getStartX() <= slatXValue && needleLine.getEndX() > slatXValue)
+                || (needleLine.getEndX() <= slatXValue && needleLine.getStartX() > slatXValue)
+                || (needleLine.getStartX() == slatXValue && slatXValue == needleLine.getEndX());
     }
 
     public void addNeedle(Needle needle) {
