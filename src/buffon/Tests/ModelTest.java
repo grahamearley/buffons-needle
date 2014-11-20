@@ -7,11 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ModelTest {
-
-    private double boardWidth;
-    private double boardHeight;
-    private int numberOfSlats;
-    private double length;
     private Model theModel;
 
     private final double delta = 0.00001; // the acceptable error when comparing doubles.
@@ -19,39 +14,39 @@ public class ModelTest {
     private Needle intersectNeedle;
     private Needle nonIntersectNeedle;
     private Needle twoSlatNeedle;
-    private Needle verticalOnSlatNeedle;
+    private Needle verticalNeedleOnSlat;
 
     @Before
     public void initialize() {
         // Set up the board:
-        this.boardHeight = 100;
-        this.boardWidth = 100;
-        this.numberOfSlats = 5;
+        int boardHeight = 100;
+        int boardWidth = 100;
+        int numberOfSlats = 5;
 
         // Set up the model:
         this.theModel = new Model();
-        this.theModel.setBoardWidth(this.boardWidth);
-        this.theModel.setBoardHeight(this.boardHeight);
-        this.theModel.setNumberOfSlats(this.numberOfSlats);
+        this.theModel.setBoardWidth(boardWidth);
+        this.theModel.setBoardHeight(boardHeight);
+        this.theModel.setNumberOfSlats(numberOfSlats);
 
-        this.length = theModel.calculateSlatDistance();
+        double length = theModel.calculateDistanceBetweenSlats();
 
 
         // Set up needles for use throughout the tests:
 
         // Horizontal needle that crosses a slat:
-        this.intersectNeedle = new Needle(0.4, 0.5, 0.0, this.length);
+        this.intersectNeedle = new Needle(0.4, 0.5, 0.0, length);
 
         // Vertical needle in between slats:
-        this.nonIntersectNeedle = new Needle(0.4, 0.5, 0.25, this.length);
+        this.nonIntersectNeedle = new Needle(0.4, 0.5, 0.25, length);
 
         // Horizontal needle that starts on one slat (the slat
         // running down the middle) and ends exactly on the next slat,
         // touching both:
-        this.twoSlatNeedle = new Needle(0.5, 0.5, 0.0, this.length);
+        this.twoSlatNeedle = new Needle(0.5, 0.5, 0.0, length);
 
         // Vertical needle positioned exactly on a slat.
-        this.verticalOnSlatNeedle = new Needle(0.5, 0.5, 0.25, this.length);
+        this.verticalNeedleOnSlat = new Needle(0.5, 0.5, 0.25, length);
     }
 
     @Test
@@ -64,9 +59,9 @@ public class ModelTest {
 
     @Test
     public void testIntersectionWithVerticalNeedleOnSlat() throws Exception {
-        this.theModel.addNeedle(this.verticalOnSlatNeedle);
+        this.theModel.addNeedle(this.verticalNeedleOnSlat);
 
-        // This rare case should count as one intersection:
+        // This rare case should be counted as an intersection:
         Assert.assertEquals(1, this.theModel.getIntersectionsCount());
     }
 
@@ -84,7 +79,7 @@ public class ModelTest {
         this.theModel.addNeedle(this.intersectNeedle);
         this.theModel.addNeedle(this.nonIntersectNeedle);
         this.theModel.addNeedle(this.twoSlatNeedle);
-        this.theModel.addNeedle(this.verticalOnSlatNeedle);
+        this.theModel.addNeedle(this.verticalNeedleOnSlat);
 
         // Check the model's calculation with what the approximation
         // should be, given this board with three intersections and four needles.

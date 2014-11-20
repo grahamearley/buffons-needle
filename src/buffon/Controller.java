@@ -20,7 +20,6 @@ public class Controller {
     public NumberView numberView;
     public TextField needleNumberInput;
     public Label inputFeedbackLabel;
-    public Random randomGenerator;
 
     public final int NUMBER_OF_SLATS = 20;
 
@@ -38,8 +37,8 @@ public class Controller {
         theModel.setNumberOfSlats(NUMBER_OF_SLATS);
 
         // Set up the board view:
-        boardView.setModel(this.theModel);
-        boardView.drawBoard();
+        this.boardView.setModel(this.theModel);
+        this.boardView.drawBoard();
 
         // Set up the number view:
         this.numberView.setModel(this.theModel);
@@ -53,13 +52,14 @@ public class Controller {
      * @return A random Needle object.
      */
     private Needle getRandomNeedle() {
-        randomGenerator = new Random();
+        Random randomGenerator = new Random();
+
         double randomXpercent = randomGenerator.nextDouble();
         double randomYpercent = randomGenerator.nextDouble();
         double randomAnglePercent = randomGenerator.nextDouble();
 
         // Needle lengths are equal to the distance between slats:
-        double length = theModel.calculateSlatDistance();
+        double length = this.theModel.calculateDistanceBetweenSlats();
 
         // Generate a random RGB color:
         int r = randomGenerator.nextInt(256);
@@ -84,7 +84,7 @@ public class Controller {
 
         // Read the input:
         try {
-            numberOfNeedlesToAdd = Integer.parseInt(needleNumberInput.getText());
+            numberOfNeedlesToAdd = Integer.parseInt(this.needleNumberInput.getText());
             this.inputFeedbackLabel.setText(String.format("Added %d needles.", numberOfNeedlesToAdd));
 
         } catch(Exception e) {
@@ -105,8 +105,8 @@ public class Controller {
     }
 
     /**
-     * Deletes all objects from the board view, and then
-     * clears the model and starts over by re-initializing.
+     * Delete all nodes from the board view, and then
+     * clear the model and start over by re-initializing.
      *
      * @param actionEvent The button-click event.
      */

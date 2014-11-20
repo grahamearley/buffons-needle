@@ -3,14 +3,14 @@ package buffon.Tests;
 import buffon.Needle;
 import javafx.scene.shape.Line;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class NeedleTest {
+    private final double delta = 0.00001; // the acceptable error when comparing doubles.
 
-    private final double delta = 0.00001;
-
-    @org.junit.Test
+    @Test
     public void testGetNeedleNode() throws Exception {
-        Needle test = new Needle(0.5,0.6,0.25,10.0);
+        Needle test = new Needle(0.5, 0.6, 0.25, 10.0);
         double width = 100;
         double height = 100;
 

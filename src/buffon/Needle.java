@@ -7,17 +7,18 @@ import javafx.scene.shape.Line;
  * Graham Earley, Carleton College, CS257
  *
  * The Needle class contains information that represents each needle in
- * relation to the window. The Needle's values are percentages that are
- * generated uniformly on 0 to 1; using the window size, these values can
- * be used to generate the Line object to be displayed.
+ * relation to the window.
+ *
+ * The Needle's values are percentages that are generated uniformly
+ * from 0 to 1; with the window size, these values can be used to
+ * generate the Line object to be displayed. This helps keep the Needle
+ * modular.
  */
 
 public class Needle {
-    // These values are percentages so that the View can determine where to put
-    //  the Needle's Line object within the window. It keeps things separate.
     public double xPercent;
     public double yPercent;
-    public double anglePercent; // degrees CCW from horizontal (pointing right)
+    public double anglePercent; // degrees counter-clockwise from horizontal (pointing right)
     public double length;
     public Color color;
 
@@ -27,10 +28,6 @@ public class Needle {
         this.anglePercent = anglePercent;
         this.length = length;
         this.color = Color.BLACK;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     /**
@@ -51,6 +48,10 @@ public class Needle {
         needleLine.setStroke(this.color);
 
         return needleLine;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
 }
