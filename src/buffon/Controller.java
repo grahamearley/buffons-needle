@@ -105,7 +105,7 @@ public class Controller {
     }
 
     /**
-     * Removes all objects from the board view, and then
+     * Deletes all objects from the board view, and then
      * clears the model and starts over by re-initializing.
      *
      * @param actionEvent The button-click event.
