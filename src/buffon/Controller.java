@@ -22,7 +22,7 @@ public class Controller {
     public Label inputFeedbackLabel;
     public Random randomGenerator;
 
-    public final int NUMBER_OF_SLATS = 10;
+    public final int NUMBER_OF_SLATS = 20;
 
     public Controller() {
     }
