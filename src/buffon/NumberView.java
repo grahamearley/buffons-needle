@@ -24,6 +24,10 @@ public class NumberView extends Group {
         this.theModel = model;
     }
 
+    /**
+     * Write the information to be displayed in the view by assembling
+     * Text objects and positioning them properly.
+     */
     public void writeInformation() {
         this.getChildren().clear();
 

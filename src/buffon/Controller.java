@@ -7,21 +7,29 @@ import javafx.scene.paint.Color;
 
 import java.util.Random;
 
-// todo: javadoc this stuff up
-
+/**
+ * Graham Earley, Carleton College, CS257
+ *
+ * This is the Controller for this MVC program. It is
+ * in charge of creating the board environment and generating
+ * random needles to send to the model and views.
+ */
 public class Controller {
     private Model theModel;
     public BoardView boardView;
     public NumberView numberView;
-    public Random randomGenerator;
-    public final double NEEDLE_LENGTH = 20.0;
     public TextField needleNumberInput;
     public Label inputFeedbackLabel;
-
+    public Random randomGenerator;
+    public final double NEEDLE_LENGTH = 20.0;
 
     public Controller() {
     }
 
+    /**
+     * Initialize the environment by creating the model
+     * and putting the views on display.
+     */
     public void initialize() {
         this.theModel = new Model();
         theModel.setSlatDistance(NEEDLE_LENGTH);
@@ -36,14 +44,13 @@ public class Controller {
         this.numberView.writeInformation();
     }
 
-    public void tossNeedles(int num) {
-        for (int i = 0; i < num; i++) {
-            Needle randomNeedle = this.getRandomNeedle();
-            theModel.addNeedle(randomNeedle);
-        }
-    }
-
-    public Needle getRandomNeedle() {
+    /**
+     * A private method that generates a randomly-positioned
+     * needle with a random color.
+     *
+     * @return A random Needle object.
+     */
+    private Needle getRandomNeedle() {
         randomGenerator = new Random();
         double randomXpercent = randomGenerator.nextDouble();
         double randomYpercent = randomGenerator.nextDouble();
@@ -61,7 +68,13 @@ public class Controller {
         return randomNeedle;
     }
 
-    //TODO: Handle keyboard ENTER event
+    /**
+     * Toss the input number of needles onto the board, and
+     * update thew views accordingly. The needles are randomly generated,
+     * and if the user entered an invalid integer value, an error is displayed.
+     *
+     * @param actionEvent The button-click or enter-key event.
+     */
     public void tossNeedles(ActionEvent actionEvent) {
         // Read the input:
         int n = 0;
@@ -86,6 +99,12 @@ public class Controller {
         this.numberView.writeInformation();
     }
 
+    /**
+     * Removes all needles from the board view, and then
+     * clears the model by re-initializing.
+     *
+     * @param actionEvent The button-click event.
+     */
     public void clearNeedles(ActionEvent actionEvent) {
         this.boardView.getChildren().clear();
         this.initialize();

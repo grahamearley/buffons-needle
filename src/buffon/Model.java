@@ -6,9 +6,10 @@ import java.util.ArrayList;
 /**
  * Graham Earley, Carleton College, CS257
  *
- * This is the Model for this MVC program. It stores each needle that has been "tossed"
- * onto the "board" and the x-values of the board's slats.
- * It also determines how many intersections there are between slats and needles.
+ * This is the Model for this MVC program. It stores the needles on the board
+ * and the positions of the board's slats.
+ *
+ * It also approximates pi and determines how many intersections there are between slats and needles.
  */
 public class Model {
     public ArrayList<Needle> tossedNeedles;
@@ -21,14 +22,13 @@ public class Model {
     }
 
     /**
-     * Determine the actual x values of each slat within a given window
-     * (only the window width is needed to determine the x values).
+     * Determine the actual x values of each slat within the board Rectangle.
      *
      * @return an array containing the x values for each slat Line.
      */
     public double[] getSlatXValues() {
         int numberOfSlats = (int)this.boardWidth / (int)this.slatDistance + 1;
-        // add one to the slat count so there is a slat on the end.
+        // add one to the slat count so that there is a slat on the end.
 
         double[] slatXValues = new double[numberOfSlats];
         for (int i = 0; i < numberOfSlats; i++) {
@@ -39,13 +39,13 @@ public class Model {
     }
 
     /**
-     * Look at all the needles and count how many cross a slat in the board.
+     * Look at all the needle Lines' x values and count how many cross a
+     * slat in the board.
      *
      * @return the number of intersections between needles and slats.
      */
     public int getIntersectionsCount() {
         int intersections = 0;
-
         double[] slatXValues = this.getSlatXValues();
 
         for (Needle needle : this.tossedNeedles) {
@@ -60,6 +60,12 @@ public class Model {
         return intersections;
     }
 
+    /**
+     * Approximate pi using the information in the simulation.
+     * For more about the formula, see http://en.wikipedia.org/wiki/Buffon's_needle
+     *
+     * @return an approximation of pi from the simulation.
+     */
     public double approximatePi() {
         int intersections = this.getIntersectionsCount();
 

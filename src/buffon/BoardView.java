@@ -24,7 +24,7 @@ public class BoardView extends Group {
     final double DEFAULT_WIDTH = 175.0;
     final double DEFAULT_HEIGHT = 200.0;
     final Color DEFAULT_BORDER_COLOR = Color.BLACK;
-    final Color DEFAULT_BACKGROUND_COLOR = Color.web("#E4F1FE");
+    final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
     public BoardView() {
         this.width = DEFAULT_WIDTH;
@@ -33,7 +33,6 @@ public class BoardView extends Group {
         this.backgroundColor = DEFAULT_BACKGROUND_COLOR;
     }
 
-    // Getters and setters used by the @FXML tag:
     public void setWidth(double width) {
         this.width = width;
     }
@@ -68,11 +67,16 @@ public class BoardView extends Group {
 
     public void setModel(Model model) {
         this.theModel = model;
+
+        // Tell the model what the board's dimensions are (for calculations):
         this.theModel.setBoardWidth(this.width);
         this.theModel.setBoardHeight(this.height);
     }
 
 
+    /**
+     * Draw horizontal slat Lines at the x values from the model.
+     */
     public void drawSlats() {
         double[] slatXValues = theModel.getSlatXValues();
         for (double slatXValue : slatXValues) {
@@ -81,19 +85,21 @@ public class BoardView extends Group {
         }
     }
 
-    // TODO: Make this thing stop shifting around on screen! LayoutBounds? Pad it by 1 NEEDLE_LENGTH unit?
+    /**
+     * Draw the board and a transparent padding rectangle to surround it.
+     *
+     *  The padding rectangle will extend beyond the board in all directions
+     *  by the needle/slat length. This prevents things from shifting around in the scene
+     *  when needles fall on the edge of the board and extend the view's LayoutBounds.
+     */
     public void drawBoard() {
         // Create the board onto which the needles are thrown.
         Rectangle board = new Rectangle(0.0, 0.0, this.getWidth(), this.getHeight());
         board.setFill(this.getBackgroundColor());
-        board.setLayoutX(0);
-        board.setLayoutY(0);
         board.setStroke(this.getBorderColor());
         board.setStrokeWidth(1.0);
 
-        // Create an outer rectangle for padding. This rectangle will extend
-        //  beyond the board in all directions by the needle/slat length (because
-        //  some needles fall mostly out of the board).
+        // Create an outer rectangle for padding.
         double paddingAmount = this.theModel.getSlatDistance();
         Rectangle padding = new Rectangle(-paddingAmount, -paddingAmount, this.getWidth() + 2*paddingAmount, this.getHeight()+ 2*paddingAmount);
         padding.setFill(Color.TRANSPARENT);
@@ -103,6 +109,11 @@ public class BoardView extends Group {
         this.getChildren().add(board);
     }
 
+    /**
+     * Draw a needle on the board.
+     *
+     *  @param needle The needle to be drawn
+     */
     public void drawNeedle(Needle needle) {
         Line needleLine = needle.getNeedleNode(this.width, this.height);
         this.getChildren().add(needleLine);

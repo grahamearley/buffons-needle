@@ -1,13 +1,11 @@
 <?import javafx.scene.layout.GridPane?>
-
 <?import javafx.scene.control.Button?>
 <?import buffon.BoardView?>
 <?import javafx.scene.control.TextField?>
 <?import buffon.NumberView?>
-
 <?import javafx.scene.control.Label?>
-
 <?import javafx.scene.text.Font?>
+
 <GridPane fx:controller="buffon.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
           stylesheets="/buffon/style.css"
@@ -20,7 +18,7 @@
                 fx:id="boardView"
                 width="400"
                 height="300"
-                borderColor="black" />
+                backgroundColor="#E4F1FE"/>
 
     <TextField fx:id="needleNumberInput"
                GridPane.rowIndex="2"
