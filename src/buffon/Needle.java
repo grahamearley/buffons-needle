@@ -35,6 +35,8 @@ public class Needle {
      * the needle's position, then assemble the Line object that
      * represents the needle.
      *
+     * @param windowWidth The width of the window this needle Line will appear in
+     * @param windowHeight The height of the window this needle Line will appear in
      * @return the JavaFX Line node to be displayed in the scene.
      */
     public Line getNeedleNode(double windowWidth, double windowHeight) {

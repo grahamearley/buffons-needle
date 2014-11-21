@@ -100,6 +100,8 @@ public class Model {
      *
      * This calculation is separated for readability.
      *
+     * @param needle The needle to check
+     * @param slatXValue The slat to check
      * @return the distance between each slat.
      */
     public boolean isIntersection(Needle needle, double slatXValue) {
