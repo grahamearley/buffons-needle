@@ -5,9 +5,8 @@
 <?import buffon.NumberView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
-
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.ToggleButton?>
+
 <GridPane fx:controller="buffon.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
           stylesheets="/buffon/style.css"
@@ -44,13 +43,13 @@
                 onAction="#clearNeedles"
                 id="RemoveButton"/>
 
-    <ToggleButton     GridPane.rowIndex="3"
+    <ToggleButton GridPane.rowIndex="3"
                 GridPane.columnIndex="2"
                 text="?"
                 textFill="WHITE"
                 onAction="#toggleInformation"
-                fx:id="questionButton"
-                id="QuestionButton"/>
+                fx:id="helpButton"
+                id="HelpButton"/>
 
     <Label      GridPane.rowIndex="5"
                 GridPane.columnSpan="3"
@@ -69,7 +68,7 @@
                 textFill="WHITE"
                 fx:id="wikipediaButton"
                 onAction="#sendToWikipedia"
-                id="QuestionButton"/>
+                id="HelpButton"/>
 
 
 </GridPane>

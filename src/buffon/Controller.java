@@ -14,9 +14,9 @@ import java.util.Random;
 /**
  * Graham Earley, Carleton College, CS257
  *
- * This is the Controller for this MVC program. It is
- * in charge of creating the board environment and generating
- * random needles to send to the model and views.
+ * This is the Controller for this MVC program. It is in charge
+ * of creating and updating the board environment (views) and
+ * generating random needles to send to the model and views.
  */
 public class Controller {
     private Model theModel;
@@ -40,8 +40,9 @@ public class Controller {
      * This method is automatically called by JavaFX.
      */
     public void initialize() {
-        this.theModel = new Model();
-        theModel.setNumberOfSlats(NUMBER_OF_SLATS);
+        double boardWidth = this.boardView.getWidth();
+        double boardHeight = this.boardView.getHeight();
+        this.theModel = new Model(NUMBER_OF_SLATS, boardWidth, boardHeight);
 
         // Set up the board view:
         this.boardView.setModel(this.theModel);
@@ -162,7 +163,7 @@ public class Controller {
             Desktop.getDesktop().browse(URI.create("http://en.wikipedia.org/wiki/Buffon%27s_needle"));
         } catch (Exception e) {
             // Let the user know if there was an error with the link:
-            this.inputFeedbackLabel.setText("Sorry, that link didn't work!");
+            this.inputFeedbackLabel.setText("Sorry, there was an error with that link!");
         }
     }
 

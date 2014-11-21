@@ -11,8 +11,8 @@ import javafx.scene.shape.Line;
  *
  * The Needle's values are percentages that are generated uniformly
  * from 0 to 1; with the window size, these values can be used to
- * generate the Line object to be displayed. This helps keep the Needle
- * modular.
+ * generate the Line object to be displayed and position it in a window.
+ * The percentages keep the Needle modular.
  */
 
 public class Needle {

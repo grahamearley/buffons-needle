@@ -24,20 +24,20 @@
     -fx-background-color: #E74C3C;
 }
 
-/* "Question" button styles: */
-#QuestionButton {
+/* "Help" button styles: */
+#HelpButton {
     -fx-background-color: #F9BF3B;
     -fx-font-size: 13px;
     -fx-font-weight: BOLD;
     -fx-font-family: "Avenir";
 }
-#QuestionButton:hover {
+#HelpButton:hover {
     -fx-background-color: #FCCB5B;
 }
-#QuestionButton:pressed {
+#HelpButton:pressed {
     -fx-background-color: #EB974E;
 }
-#QuestionButton:selected {
+#HelpButton:selected {
     -fx-background-color: #EB974E;
 }
 

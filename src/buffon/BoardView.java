@@ -67,7 +67,7 @@ public class BoardView extends Group {
     /**
      * Draw the board background and a transparent padding rectangle to surround it.
      *
-     *  The padding rectangle will extend beyond the board in all directions
+     *  The transparent padding rectangle will extend beyond the board in all directions
      *  by the needle/slat length. This prevents things from shifting around in the scene
      *  when needles fall on the edge of the board and extend the view's LayoutBounds.
      */
@@ -88,16 +88,8 @@ public class BoardView extends Group {
         this.getChildren().add(board);
     }
 
-    /**
-     * An enhanced setter method that sets the model for the view,
-     * and adds the view's dimensions to the model so it always
-     * knows the size of the board.
-     */
     public void setModel(Model model) {
         this.theModel = model;
-
-        this.theModel.setBoardWidth(this.width);
-        this.theModel.setBoardHeight(this.height);
     }
 
     public void setWidth(double width) {
