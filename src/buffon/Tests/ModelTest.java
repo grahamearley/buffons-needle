@@ -24,10 +24,7 @@ public class ModelTest {
         int numberOfSlats = 5;
 
         // Set up the model:
-        this.theModel = new Model();
-        this.theModel.setBoardWidth(boardWidth);
-        this.theModel.setBoardHeight(boardHeight);
-        this.theModel.setNumberOfSlats(numberOfSlats);
+        this.theModel = new Model(numberOfSlats, boardWidth, boardHeight);
 
         double length = theModel.calculateDistanceBetweenSlats();
 
@@ -75,7 +72,7 @@ public class ModelTest {
     }
 
     @Test
-    public void testApproximatePi() throws Exception {
+    public void testPiApproximation() throws Exception {
         this.theModel.addNeedle(this.intersectNeedle);
         this.theModel.addNeedle(this.nonIntersectNeedle);
         this.theModel.addNeedle(this.twoSlatNeedle);

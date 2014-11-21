@@ -18,7 +18,10 @@ public class Model {
     public double boardWidth;
     public double boardHeight;
 
-    public Model() {
+    public Model(int numberOfSlats, double boardWidth, double boardHeight) {
+        this.numberOfSlats = numberOfSlats;
+        this.boardWidth = boardWidth;
+        this.boardHeight = boardHeight;
         this.tossedNeedles = new ArrayList<Needle>();
     }
 
@@ -88,26 +91,27 @@ public class Model {
      */
     public double calculateDistanceBetweenSlats() {
         // The denominator is (this.numberOfSlats - 1) so that the final slat
-        // goes on the edge of the board.
+        // goes on the edge of the board:
         return this.boardWidth / (this.numberOfSlats - 1);
     }
 
     /**
-     * A helper method to see if a needle Line intersects with a slat.
+     * Check if a needle Line intersects with a slat.
      *
      * This calculation is separated for readability.
      *
      * @return the distance between each slat.
      */
-    private boolean isIntersection(Needle needle, double slatXValue) {
+    public boolean isIntersection(Needle needle, double slatXValue) {
         Line needleLine = needle.getNeedleNode(this.boardWidth, this.boardHeight);
 
-        // Only the beginning position is checked for being on the slat (<= rather than <) so that no
-        //  intersection is counted twice. The final expression in this logic statement covers the
-        //  case where a vertical needle is directly on top of a slat.
+        // Only the beginning position is checked for being directly on the slat (<= rather than <) so that no
+        //  intersection is counted twice (this protects against a horizontal needle starting on one slat and
+        //  ending on the next counting as two intersections). The final expression in this logic statement covers
+        //  the case where a vertical needle is directly on top of a slat.
         return (needleLine.getStartX() <= slatXValue && needleLine.getEndX() > slatXValue)
-                || (needleLine.getEndX() <= slatXValue && needleLine.getStartX() > slatXValue)
-                || (needleLine.getStartX() == slatXValue && slatXValue == needleLine.getEndX());
+            || (needleLine.getEndX() <= slatXValue && needleLine.getStartX() > slatXValue)
+            || (needleLine.getStartX() == slatXValue && needleLine.getEndX() == slatXValue);
     }
 
     public void addNeedle(Needle needle) {
@@ -134,7 +138,4 @@ public class Model {
         return this.boardHeight;
     }
 
-    public void setNumberOfSlats(int numberOfSlats) {
-        this.numberOfSlats = numberOfSlats;
-    }
 }
