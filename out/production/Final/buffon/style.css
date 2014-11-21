@@ -24,6 +24,20 @@
     -fx-background-color: #E74C3C;
 }
 
+/* "Question" button styles: */
+#QuestionButton {
+    -fx-background-color: #F4B350;
+    -fx-font-size: 13px;
+    -fx-font-weight: BOLD;
+    -fx-font-family: "Avenir";
+}
+#QuestionButton:hover {
+    -fx-background-color: #F9BF3B;
+}
+#QuestionButton:pressed {
+    -fx-background-color: #F5AB35;
+}
+
 /* GridPane style: */
 #GridPane {
     -fx-background-color: #ECF0F1;

@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
+import java.awt.*;
+import java.net.URI;
 import java.util.Random;
 
 /**
@@ -114,5 +116,20 @@ public class Controller {
         this.boardView.getChildren().clear();
         this.initialize();
         this.inputFeedbackLabel.setText("Cleared the board!");
+    }
+
+    /**
+     * Open the Buffon's Needle Wikipedia page in the web browser
+     * to give the user more information.
+     *
+     * @param actionEvent The button-click event.
+     */
+    public void sendToWikipedia(ActionEvent actionEvent) {
+        try {
+            Desktop.getDesktop().browse(URI.create("http://en.wikipedia.org/wiki/Buffon%27s_needle"));
+        } catch (Exception e) {
+            // Let the user know if there was an error with the link:
+            this.inputFeedbackLabel.setText("Sorry, that link didn't work!");
+        }
     }
 }

@@ -12,32 +12,47 @@
           id="GridPane">
 
     <NumberView GridPane.rowIndex="0"
+                GridPane.columnSpan="3"
                 fx:id="numberView" />
 
-    <BoardView GridPane.rowIndex="1"
+    <BoardView  GridPane.rowIndex="1"
+                GridPane.columnSpan="3"
                 fx:id="boardView"
                 width="400"
                 height="300"
-                backgroundColor="#E4F1FE"/>
+                backgroundColor="#E4F1FE" />
 
-    <TextField fx:id="needleNumberInput"
-               GridPane.rowIndex="2"
-               onAction="#tossNeedles"
-               text="0" />
+    <TextField  GridPane.rowIndex="2"
+                GridPane.columnSpan="3"
+                fx:id="needleNumberInput"
+                text="0"
+                onAction="#tossNeedles"/>
 
-    <Button text="Toss Needles!"
-            onAction="#tossNeedles"
-            GridPane.rowIndex="3"
-            GridPane.columnIndex="0"
-            id="AddButton"/>
+    <Button     GridPane.rowIndex="3"
+                GridPane.columnIndex="0"
+                text="Toss Needles!"
+                textFill="WHITE"
+                onAction="#tossNeedles"
+                id="AddButton"/>
 
-    <Button text="Remove all needles"
-            onAction="#clearNeedles"
-            GridPane.rowIndex="4"
-            GridPane.columnIndex="0"
-            id="RemoveButton"/>
+    <Button     GridPane.rowIndex="3"
+                GridPane.columnIndex="1"
+                text="Remove all needles"
+                textFill="WHITE"
+                onAction="#clearNeedles"
+                id="RemoveButton"/>
 
-    <Label fx:id="inputFeedbackLabel" GridPane.rowIndex="5" id="Input">
+    <Button     GridPane.rowIndex="3"
+                GridPane.columnIndex="2"
+                text="?"
+                textFill="WHITE"
+                onAction="#sendToWikipedia"
+                id="QuestionButton"/>
+
+    <Label      GridPane.rowIndex="5"
+                GridPane.columnSpan="3"
+                fx:id="inputFeedbackLabel"
+                id="Input">
         <font>
             <Font name="Avenir Roman" size="15" />
         </font>
