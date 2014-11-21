@@ -96,10 +96,13 @@ public class Model {
     }
 
     /**
-     * Check if a needle Line intersects with a slat.
+     * Check if a needle Line intersects with a slat by
+     * comparing x values.
      *
      * This calculation is separated for readability.
      *
+     * @param needle The needle to check
+     * @param slatXValue The slat x value to check
      * @return the distance between each slat.
      */
     public boolean isIntersection(Needle needle, double slatXValue) {
