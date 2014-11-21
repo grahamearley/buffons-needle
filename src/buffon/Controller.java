@@ -1,6 +1,8 @@
 package buffon;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -20,8 +22,11 @@ public class Controller {
     private Model theModel;
     public BoardView boardView;
     public NumberView numberView;
+
     public TextField needleNumberInput;
     public Label inputFeedbackLabel;
+    public Button wikipediaButton;
+    public ToggleButton helpButton;
 
     public final int NUMBER_OF_SLATS = 20;
 
@@ -45,33 +50,6 @@ public class Controller {
         // Set up the number view:
         this.numberView.setModel(this.theModel);
         this.numberView.writeInformation();
-    }
-
-    /**
-     * A private method that generates a randomly-positioned
-     * needle with a random color.
-     *
-     * @return A random Needle object.
-     */
-    private Needle getRandomNeedle() {
-        Random randomGenerator = new Random();
-
-        double randomXpercent = randomGenerator.nextDouble();
-        double randomYpercent = randomGenerator.nextDouble();
-        double randomAnglePercent = randomGenerator.nextDouble();
-
-        // Needle lengths are equal to the distance between slats:
-        double length = this.theModel.calculateDistanceBetweenSlats();
-
-        // Generate a random RGB color:
-        int r = randomGenerator.nextInt(256);
-        int g = randomGenerator.nextInt(256);
-        int b = randomGenerator.nextInt(256);
-
-        Needle randomNeedle = new Needle(randomXpercent, randomYpercent, randomAnglePercent, length);
-        randomNeedle.setColor(Color.rgb(r, g, b));
-
-        return randomNeedle;
     }
 
     /**
@@ -104,6 +82,38 @@ public class Controller {
             }
 
         this.numberView.writeInformation();
+
+        // Ensure the information toggle is deselected:
+        this.deselectInformationToggle();
+    }
+
+    /**
+     * A private method that generates a randomly-positioned
+     * needle with a random color.
+     *
+     * @return A random Needle object.
+     */
+    private Needle getRandomNeedle() {
+        Random randomGenerator = new Random();
+
+        double randomXpercent = randomGenerator.nextDouble();
+        double randomYpercent = randomGenerator.nextDouble();
+        double randomAnglePercent = randomGenerator.nextDouble();
+
+        // Needle lengths are equal to the distance between slats:
+        double length = this.theModel.calculateDistanceBetweenSlats();
+
+        Needle randomNeedle = new Needle(randomXpercent, randomYpercent, randomAnglePercent, length);
+        randomNeedle.setColor(Color.web("#AEA8D3"));
+
+        // Intersecting needles have a different color:
+        for (double slat : this.theModel.getSlatXValues()) {
+            if (theModel.isIntersection(randomNeedle, slat)) {
+                randomNeedle.setColor(Color.web("#663399"));
+            }
+        }
+
+        return randomNeedle;
     }
 
     /**
@@ -116,6 +126,29 @@ public class Controller {
         this.boardView.getChildren().clear();
         this.initialize();
         this.inputFeedbackLabel.setText("Cleared the board!");
+
+        // Ensure the information toggle is deselected:
+        this.deselectInformationToggle();
+    }
+
+    /**
+     * Toggle the explanation of the color-coding system and the
+     * link to the Buffon's Needle Wikipedia page.
+     *
+     * @param actionEvent The button-click event.
+     */
+    public void toggleInformation(ActionEvent actionEvent) {
+        if (this.helpButton.isSelected()) {
+            this.inputFeedbackLabel.setText("Dark purple needles intersect with a slat. Light purple needles do not.");
+
+            // Show the Wikipedia link:
+            this.wikipediaButton.setVisible(true);
+        } else {
+            this.inputFeedbackLabel.setText("");
+
+            // Don't show the Wikipedia link:
+            this.wikipediaButton.setVisible(false);
+        }
     }
 
     /**
@@ -131,5 +164,15 @@ public class Controller {
             // Let the user know if there was an error with the link:
             this.inputFeedbackLabel.setText("Sorry, that link didn't work!");
         }
+    }
+
+    /**
+     * Manually deselect the information ToggleButton and hide the Wikipedia link.
+     *
+     * This is used when other buttons are pressed; pressing other buttons turns the help text off.
+     */
+    private void deselectInformationToggle() {
+        this.wikipediaButton.setVisible(false);
+        this.helpButton.setSelected(false);
     }
 }

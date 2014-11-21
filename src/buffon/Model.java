@@ -93,13 +93,13 @@ public class Model {
     }
 
     /**
-     * A helper method to see if a needle Line intersects with a slat.
+     * Check if a needle Line intersects with a slat.
      *
      * This calculation is separated for readability.
      *
      * @return the distance between each slat.
      */
-    private boolean isIntersection(Needle needle, double slatXValue) {
+    public boolean isIntersection(Needle needle, double slatXValue) {
         Line needleLine = needle.getNeedleNode(this.boardWidth, this.boardHeight);
 
         // Only the beginning position is checked for being on the slat (<= rather than <) so that no

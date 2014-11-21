@@ -26,16 +26,19 @@
 
 /* "Question" button styles: */
 #QuestionButton {
-    -fx-background-color: #F4B350;
+    -fx-background-color: #F9BF3B;
     -fx-font-size: 13px;
     -fx-font-weight: BOLD;
     -fx-font-family: "Avenir";
 }
 #QuestionButton:hover {
-    -fx-background-color: #F9BF3B;
+    -fx-background-color: #FCCB5B;
 }
 #QuestionButton:pressed {
-    -fx-background-color: #F5AB35;
+    -fx-background-color: #EB974E;
+}
+#QuestionButton:selected {
+    -fx-background-color: #EB974E;
 }
 
 /* GridPane style: */
