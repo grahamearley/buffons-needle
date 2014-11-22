@@ -8,8 +8,8 @@ import javafx.scene.text.Text;
 /**
  * Graham Earley, Carleton College, CS257
  *
- * This class handles the view of information calculated from the
- * simulation. It tells the user how many needles have been thrown,
+ * This class provides a view of information calculated from the
+ * simulation: it tells the user how many needles have been thrown,
  * how many intersect, and what the approximation of pi is.
  */
 public class NumberView extends Group {
@@ -19,15 +19,11 @@ public class NumberView extends Group {
     public NumberView() {
     }
 
-    public void setModel(Model model) {
-        this.theModel = model;
-    }
-
     /**
      * Write the information to be displayed in the view by assembling
      * Text objects and positioning them properly.
      *
-     * Header texts are followed by the actual calculations/results.
+     * Subheader texts are followed by the actual calculations/results.
      */
     public void writeInformation() {
         int h1Size = 20;
@@ -77,5 +73,9 @@ public class NumberView extends Group {
         Text piApproximation = new Text(piApproxHeader.getLayoutBounds().getWidth() + padding, distanceFromTop, pi.toString());
         piApproximation.setFont(Font.font(this.fontString, FontWeight.LIGHT, h2Size));
         this.getChildren().add(piApproximation);
+    }
+
+    public void setModel(Model model) {
+        this.theModel = model;
     }
 }

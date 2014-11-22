@@ -9,8 +9,8 @@ import javafx.scene.shape.Rectangle;
 /**
  * Graham Earley, Carleton College, CS257
  *
- * This class handles the view of the "board" onto which the
- * needles are thrown. It draws the background, the slats, and
+ * This class provides a view of the "board" onto which the
+ * needles are thrown: it draws the background, the slats, and
  * the needles.
  */
 public class BoardView extends Group {
@@ -34,11 +34,10 @@ public class BoardView extends Group {
     }
 
     /**
-     * Draws the entire board, consisting of the background and the slats.
-     *
-     * This task is broken up into two smaller private methods.
+     * Draw the entire board, consisting of the background and the slat lines.
      */
     public void drawBoard() {
+        // This task is broken up into two smaller private methods:
         this.drawBackground();
         this.drawSlats();
     }
@@ -68,15 +67,14 @@ public class BoardView extends Group {
      * Draw the board background and a transparent padding rectangle to surround it.
      *
      *  The transparent padding rectangle will extend beyond the board in all directions
-     *  by the needle/slat length. This prevents things from shifting around in the scene
-     *  when needles fall on the edge of the board and extend the view's LayoutBounds.
+     *  by the needle/slat length. Without this, things shift around in the scene when
+     *  needles fall on the edge of the board and extend the view's LayoutBounds.
      */
     private void drawBackground() {
         // Create the background of the board onto which the needles are thrown:
         Rectangle board = new Rectangle(0.0, 0.0, this.getWidth(), this.getHeight());
         board.setFill(this.getBackgroundColor());
         board.setStroke(this.getBorderColor());
-        board.setStrokeWidth(1.0);
 
         // Create an outer rectangle for padding:
         double paddingAmount = this.theModel.calculateDistanceBetweenSlats();

@@ -7,12 +7,12 @@ import javafx.scene.shape.Line;
  * Graham Earley, Carleton College, CS257
  *
  * The Needle class contains information that represents each needle in
- * relation to the window.
+ * relation to a window.
  *
  * The Needle's values are percentages that are generated uniformly
  * from 0 to 1; with the window size, these values can be used to
  * generate the Line object to be displayed and position it in a window.
- * The percentages keep the Needle modular.
+ * The percentages keep the Needle modular and independent of the window.
  */
 
 public class Needle {

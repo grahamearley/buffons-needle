@@ -47,8 +47,8 @@
                 GridPane.columnIndex="2"
                 text="?"
                 textFill="WHITE"
-                onAction="#toggleInformation"
-                fx:id="helpButton"
+                onAction="#toggleHelpInfo"
+                fx:id="helpToggle"
                 id="HelpButton"/>
 
     <Label      GridPane.rowIndex="5"

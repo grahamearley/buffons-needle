@@ -25,8 +25,8 @@ public class Controller {
 
     public TextField needleNumberInput;
     public Label inputFeedbackLabel;
+    public ToggleButton helpToggle;
     public Button wikipediaButton;
-    public ToggleButton helpButton;
 
     public final int NUMBER_OF_SLATS = 20;
 
@@ -55,8 +55,8 @@ public class Controller {
 
     /**
      * "Toss" the input number of needles onto the board, and
-     * update thew views accordingly. The needles are randomly generated,
-     * and if the user entered an invalid integer value, an error is displayed.
+     * update thew views accordingly. The needles are randomly generated.
+     * If the user entered an invalid integer value, an error is displayed.
      *
      * @param actionEvent The button-click or enter-key event.
      */
@@ -67,7 +67,6 @@ public class Controller {
         try {
             numberOfNeedlesToAdd = Integer.parseInt(this.needleNumberInput.getText());
             this.inputFeedbackLabel.setText(String.format("Added %d needles.", numberOfNeedlesToAdd));
-
         } catch(Exception e) {
             numberOfNeedlesToAdd = 0;
 
@@ -84,15 +83,15 @@ public class Controller {
 
         this.numberView.writeInformation();
 
-        // Ensure the information toggle is deselected:
-        this.deselectInformationToggle();
+        // Ensure the "help" information toggle is deselected after this button is pressed:
+        this.deselectHelpInfoToggle();
     }
 
     /**
-     * A private method that generates a randomly-positioned
-     * needle with a random color.
+     * A private method that generates a randomly-positioned Needle
+     * with a color determined by its intersection status.
      *
-     * @return A random Needle object.
+     * @return a random Needle object.
      */
     private Needle getRandomNeedle() {
         Random randomGenerator = new Random();
@@ -101,16 +100,19 @@ public class Controller {
         double randomYpercent = randomGenerator.nextDouble();
         double randomAnglePercent = randomGenerator.nextDouble();
 
+        Color nonIntersectColor = Color.web("#AEA8D3");
+        Color intersectColor = Color.web("#663399");
+
         // Needle lengths are equal to the distance between slats:
         double length = this.theModel.calculateDistanceBetweenSlats();
 
         Needle randomNeedle = new Needle(randomXpercent, randomYpercent, randomAnglePercent, length);
-        randomNeedle.setColor(Color.web("#AEA8D3"));
+        randomNeedle.setColor(nonIntersectColor);
 
         // Intersecting needles have a different color:
         for (double slat : this.theModel.getSlatXValues()) {
-            if (theModel.isIntersection(randomNeedle, slat)) {
-                randomNeedle.setColor(Color.web("#663399"));
+            if (this.theModel.isIntersection(randomNeedle, slat)) {
+                randomNeedle.setColor(intersectColor);
             }
         }
 
@@ -118,8 +120,8 @@ public class Controller {
     }
 
     /**
-     * Delete all nodes from the board view, and then
-     * clear the model and start over by re-initializing.
+     * Delete all nodes from the board view, and then clear the
+     * model and start over by re-initializing.
      *
      * @param actionEvent The button-click event.
      */
@@ -128,8 +130,8 @@ public class Controller {
         this.initialize();
         this.inputFeedbackLabel.setText("Cleared the board!");
 
-        // Ensure the information toggle is deselected:
-        this.deselectInformationToggle();
+        // Ensure the "help" information toggle is deselected after this button is pressed:
+        this.deselectHelpInfoToggle();
     }
 
     /**
@@ -138,8 +140,8 @@ public class Controller {
      *
      * @param actionEvent The button-click event.
      */
-    public void toggleInformation(ActionEvent actionEvent) {
-        if (this.helpButton.isSelected()) {
+    public void toggleHelpInfo(ActionEvent actionEvent) {
+        if (this.helpToggle.isSelected()) {
             this.inputFeedbackLabel.setText("Dark purple needles intersect with a slat. Light purple needles do not.");
 
             // Show the Wikipedia link:
@@ -154,7 +156,7 @@ public class Controller {
 
     /**
      * Open the Buffon's Needle Wikipedia page in the web browser
-     * to give the user more information.
+     * to give the curious/confused user more information.
      *
      * @param actionEvent The button-click event.
      */
@@ -172,8 +174,8 @@ public class Controller {
      *
      * This is used when other buttons are pressed; pressing other buttons turns the help text off.
      */
-    private void deselectInformationToggle() {
+    private void deselectHelpInfoToggle() {
         this.wikipediaButton.setVisible(false);
-        this.helpButton.setSelected(false);
+        this.helpToggle.setSelected(false);
     }
 }

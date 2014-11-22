@@ -26,7 +26,8 @@ public class Model {
     }
 
     /**
-     * Determine the x values of each slat within the board-view Rectangle.
+     * Determine the x values of each slat within the board view's Rectangle.
+     * Slats are evenly placed on the board.
      *
      * @return an array containing the x values for each slat Line.
      */
@@ -70,7 +71,7 @@ public class Model {
     public double approximatePi() {
         int intersections = this.getIntersectionsCount();
 
-        // Can't divided by zero:
+        // Can't divide by zero:
         if (intersections == 0) {
             return 0;
         }
@@ -102,14 +103,14 @@ public class Model {
      *
      * @param needle The needle to check
      * @param slatXValue The slat to check
-     * @return the distance between each slat.
+     * @return a boolean for whether the needle and slat intersect (true) or not (false)
      */
     public boolean isIntersection(Needle needle, double slatXValue) {
         Line needleLine = needle.getNeedleNode(this.boardWidth, this.boardHeight);
 
-        // Only the beginning position is checked for being directly on the slat (<= rather than <) so that no
-        //  intersection is counted twice (this protects against a horizontal needle starting on one slat and
-        //  ending on the next counting as two intersections). The final expression in this logic statement covers
+        // Only the beginning coordinate is checked for being directly on the slat (<= rather than <) so that no
+        //  intersection is counted twice (this protects against counting two intersections when a horizontal needle
+        //  starts on one slat and ends directly on the next). The final expression in this logic statement covers
         //  the case where a vertical needle is directly on top of a slat.
         return (needleLine.getStartX() <= slatXValue && needleLine.getEndX() > slatXValue)
             || (needleLine.getEndX() <= slatXValue && needleLine.getStartX() > slatXValue)
