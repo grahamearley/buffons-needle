@@ -27,7 +27,7 @@ public class Model {
 
     /**
      * Determine the x values of each slat within the board view's Rectangle.
-     * Slats are evenly placed on the board.
+     * Slats are evenly spaced on the board.
      *
      * @return an array containing the x values for each slat Line.
      */
@@ -97,7 +97,8 @@ public class Model {
     }
 
     /**
-     * Check if a needle Line intersects with a slat.
+     * Check if a needle Line intersects with a slat by comparing
+     * x values.
      *
      * This calculation is separated for readability.
      *
