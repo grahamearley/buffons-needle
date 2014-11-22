@@ -50,7 +50,7 @@ public class Controller {
 
         // Set up the number view:
         this.numberView.setModel(this.theModel);
-        this.numberView.writeInformation();
+        this.numberView.initializeTextDisplay();
     }
 
     /**
@@ -81,7 +81,7 @@ public class Controller {
             this.boardView.drawNeedle(randomNeedle);
             }
 
-        this.numberView.writeInformation();
+        this.numberView.updateCalculationInformation();
 
         // Ensure the "help" information toggle is deselected after this button is pressed:
         this.deselectHelpInfoToggle();
