@@ -9,9 +9,9 @@ import javafx.stage.Stage;
 /**
  * Graham Earley, Carleton College, CS257
  *
- * This is the Main class for the program. It loads the FXML
- * and sets up the stage, and then uses JavaFX methods to launch the
- * application.
+ * This is the Main class for the program, a simulation of Buffon's Needle.
+ * This class loads the FXML and sets up the stage, and then uses JavaFX methods
+ * to launch the application.
  */
 public class Main extends Application {
 

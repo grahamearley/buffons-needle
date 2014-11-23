@@ -37,7 +37,6 @@ public class BoardView extends Group {
      * Draw the entire board, consisting of the background and the slat lines.
      */
     public void drawBoard() {
-        // This task is broken up into two smaller private methods:
         this.drawBackground();
         this.drawSlats();
     }

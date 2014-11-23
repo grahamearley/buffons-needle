@@ -70,7 +70,6 @@ public class Controller {
         } catch(Exception e) {
             numberOfNeedlesToAdd = 0;
 
-            // Notify users of the error and set the box to 0:
             this.inputFeedbackLabel.setText("Please enter a valid integer!");
             this.needleNumberInput.setText("0");
         }
@@ -109,7 +108,6 @@ public class Controller {
         Needle randomNeedle = new Needle(randomXpercent, randomYpercent, randomAnglePercent, length);
         randomNeedle.setColor(nonIntersectColor);
 
-        // Intersecting needles have a different color:
         for (double slat : this.theModel.getSlatXValues()) {
             if (this.theModel.isIntersection(randomNeedle, slat)) {
                 randomNeedle.setColor(intersectColor);
