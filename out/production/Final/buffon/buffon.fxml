@@ -25,6 +25,7 @@
 
     <TextField  GridPane.rowIndex="2"
                 GridPane.columnSpan="3"
+                prefColumnCount="1"
                 fx:id="needleNumberInput"
                 text="0"
                 onAction="#tossNeedles"/>
